@@ -1,0 +1,51 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div><button id="botaoCarregar">Carregando veiculos...</button></div>
+
+    <div id="cervejasDiv"></div>
+  </body>
+
+  <script>
+    let veiculos = [
+      {
+        automaker: "Aston Martin",
+        model: "DB5",
+        year: "1964",
+      },
+      {
+        automaker: "Ferrari",
+        model: "F355",
+        year: "1999",
+      },
+    ];
+
+    //cs é um array de cervejas
+
+    const veiculosDiv = (
+      cs,
+      id = "veiculosDiv",
+      propriedades = ["automaker", "model", "year"],
+    ) => {
+      const div = document.getElementById(id);
+      const cabecalho = propriedades
+        .map((chave) => `<th>${chave}</th>`);
+      const itensHtml = cs.map(
+        (item) => `<tbody>
+        <tr>  ${propriedades.map((p) => `<td>${item[p]}</td>`)}</tr>
+      </tbody>`,
+      );
+      div.innerHTML = `<table><thead><tr>${cabecalho}</tr></thead>${itensHtml}</table>`;
+    };
+
+    let botao = document.getElementById("botaoCarregar");
+
+    botao.addEventListener("click", () => carregarDiv(veiculos));
+  </script>
+</html>
